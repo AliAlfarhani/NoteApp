@@ -1,58 +1,41 @@
-import {useState} from 'react'
+import React,{useState,useEffect} from 'react'
 
-function App() {
-  const [title, setTitle] = useState('')
+const App = () => {
+  const [title,setTitle] = useState('')
   const [body, setBody] = useState('')
+  const [notes, setNotes] = useState([])
+  const deleteNote = (id) => {
+     notes.filter((note)=> note.id !== id)
 
-  const [notes, setNotes] = useState([]);
-  const [note, setNote] = useState()
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setNotes([...notes,{
-      id:notes.length+1,
-      title: title,
-      body: body
-    }])
-    e.target[0].value = ''
-    e.target[1].value = ''
-  }
-
-  const handleDelete = (e) => {
-    notes.filter((note)=> {return note.id !== e.target.value} )
 
   }
 
   return (
-    <>
-      <h1>Note App</h1>
-      <p>Ali mannen du lär dig snabbt mashaallah!</p>
-      <form onSubmit={handleSubmit}>
-        <lable>
-        Titel:
-          <input type='text' onChange={(e)=>setTitle(e.target.value)} />
-        </lable>
-        <br/>
-        <lable>
-        Anteckning:
-          <input type='text' onChange={(e)=>setBody(e.target.value)} />
-        </lable>
-        <br />
-        <button>Lägg till</button>
-      </form>
+    <div style={{margin:'0 auto',marginTop: '50px', width: '250px'}}>
+    <form>
+      <label forhtml='title'>Title:</label>
+        <input type='text' onChange={(e) => setTitle(e.target.value)} />
+      <label forhtml='title'>Body:</label>
+        <input type='text'  onChange={(e) => setBody(e.target.value)} />
+      <button onClick={ (e) => {
+        e.preventDefault()
+        setNotes([...notes, {id:  notes.length + 1 , title, body}])}}>Add</button>
+    </form>
     <ul>
-    {
-      notes.map(({id, title, body}) =>(
+      {notes.map(({id,title,body})=>(
         <li key={id}>
-          <h2> {title} </h2>
-          <p> {body} </p>
-          <button onClick={ (e) => handleDelete(id) } value={id}>Delete</button>
+          <h3>{title}</h3>
+          <p>{body}</p>
+          <button onClick={(e) => deleteNote(id)}>Delete Note</button>
         </li>
-      ))
-    }
+      ))}
     </ul>
-    </>
-  );
+    </div>
+  )
 }
 
-export default App;
+export default App
+
+
+
+ 
