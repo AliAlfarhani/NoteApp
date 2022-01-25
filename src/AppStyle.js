@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
     width: 1200px;
     min-height: 1000px;
     background-color: #fff;
-    text-align: center;
+    /* text-align: center; */
     border-radius: 15px;
 
     form {
@@ -56,7 +56,7 @@ export const Wrapper = styled.div`
     .search {
       display: flex;
       flex-direction: column;
-      background-color: #eee;
+
       width: 70%;
       margin: 0 auto;
       margin-top: 10px;
@@ -70,22 +70,24 @@ export const Wrapper = styled.div`
         padding: 15px;
       }
     }
+
     .notes-container {
       border-radius: 15px;
       padding: 20px;
 
       display: flex;
       flex-direction: column;
-
-      background-color: #eee;
       min-height: 100px;
-      width: 70%;
       margin: 0 auto;
       margin-top: 10px;
     }
     .notes-container :nth-child(even) {
       align-self: flex-end;
-      width: 70%;
+      min-width: 375;
+    }
+    .notes-container :nth-child(odd) {
+      align-self: flex-start;
+      min-width: 375;
     }
   }
   h1 {
